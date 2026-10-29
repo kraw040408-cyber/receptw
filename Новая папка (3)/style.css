@@ -1,0 +1,325 @@
+/* Базовые стили и переменные */
+:root {
+    --primary-color: #e67e22;
+    --primary-hover: #d35400;
+    --bg-color: #fcf8f2;
+    --card-bg: #ffffff;
+    --text-color: #2c3e50;
+    --text-muted: #7f8c8d;
+    --border-color: #e0d0c0;
+    --success-color: #27ae60;
+    --danger-color: #c0392b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Скрытие радиокнопок переключателя */
+input[name="screen-switcher"] {
+    display: none;
+}
+
+/* Шапка и навигация */
+.header {
+    background-color: var(--card-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.nav {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.nav-btn:hover {
+    background-color: rgba(230, 126, 34, 0.1);
+    color: var(--primary-color);
+}
+
+/* CSS Трюк: подсветка активной вкладки и показ нужного экрана */
+#tab-recipes:checked ~ .header .btn-recipes,
+#tab-planner:checked ~ .header .btn-planner,
+#tab-shopping:checked ~ .header .btn-shopping {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.screen {
+    display: none;
+    padding: 30px 5%;
+    animation: fadeIn 0.4s ease;
+}
+
+#tab-recipes:checked ~ .main-container #recipes-screen,
+#tab-planner:checked ~ .main-container #planner-screen,
+#tab-shopping:checked ~ .main-container #shopping-screen {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Общие элементы экранов */
+h2 {
+    font-size: 28px;
+    margin-bottom: 5px;
+    color: #34495e;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* Экран 1: Сетка рецептов */
+.recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.recipe-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-image {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    background-color: #ffeaa7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+}
+
+.recipe-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.recipe-content h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.recipe-content p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.ingredients-preview {
+    font-size: 13px;
+    background: #fdf6ed;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.action-btn {
+    display: inline-block;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+    border: none;
+    width: 100%;
+}
+
+.action-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Экран 2: Планировщик */
+.planner-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .planner-container { grid-template-columns: 1fr; }
+}
+
+.form-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.form-card h3 { margin-bottom: 20px; }
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: #fff;
+    font-size: 15px;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover { background-color: #219653; }
+
+/* Таблицы */
+.table-container {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.app-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.app-table th, .app-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f1e6da;
+}
+
+.app-table th {
+    background-color: #f9f1e7;
+    font-weight: 600;
+}
+
+.delete-btn {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.delete-btn:hover { background-color: #c0392b; }
+
+/* Экран 3: Список покупок */
+.shopping-card {
+    background: var(--card-bg);
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.shopping-list {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.shopping-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f8eee2;
+}
+
+.shopping-item input[type="checkbox"] {
+    margin-right: 15px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+}
+
+.shopping-item input[type="checkbox"]:checked + span {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+.clear-btn {
+    width: 100%;
+    background: none;
+    border: 2px dashed var(--border-color);
+    color: var(--text-muted);
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.clear-btn:hover {
+    border-color: var(--danger-color);
+    color: var(--danger-color);
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя Кулинарная Книга & Меню</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- СКРЫТЫЕ ПЕРЕКЛЮЧАТЕЛИ ЭКРАНОВ -->
+    <input type="radio" name="screen-switcher" id="tab-recipes" checked>
+    <input type="radio" name="screen-switcher" id="tab-planner">
+    <input type="radio" name="screen-switcher" id="tab-shopping">
+
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="logo">ChefBook 🍳</div>
+        <nav class="nav">
+            <label for="tab-recipes" class="nav-btn btn-recipes">📖 Рецепты</label>
+            <label for="tab-planner" class="nav-btn btn-planner">📅 План меню</label>
+            <label for="tab-shopping" class="nav-btn btn-shopping">🛒 Список покупок</label>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <!-- ЭКРАН 1: КУЛИНАРНАЯ КНИГА -->
+        <section id="recipes-screen" class="screen">
+            <div class="screen-header">
+                <h2>Мои Рецепты</h2>
+                <p class="subtitle">Ваша персональная коллекция блюд с быстрым добавлением в меню.</p>
+            </div>
+            
+            <!-- Сетка рецептов -->
+            <div class="recipes-grid" id="recipes-container">
+                <!-- Сюда скрипт добавит карточки рецептов -->
+            </div>
+        </section>
+
+        <!-- ЭКРАН 2: ПЛАНИРОВАНИЕ МЕНЮ -->
+        <section id="planner-screen" class="screen">
+            <h2>Планирование меню на неделю</h2>
+            <p class="subtitle">Распределите блюда по дням недели. Нужные ингредиенты попадут в список покупок автоматически.</p>
+            
+            <div class="planner-container">
+                <!-- Форма планирования -->
+                <div class="form-card">
+                    <h3>Добавить блюдо в план</h3>
+                    <form id="planner-form">
+                        <div class="form-group">
+                            <label for="plan-day">День недели:</label>
+                            <select id="plan-day" required>
+                                <option value="Понедельник">Понедельник</option>
+                                <option value="Вторник">Вторник</option>
+                                <option value="Среда">Среда</option>
+                                <option value="Четверг">Четверг</option>
+                                <option value="Пятница">Пятница</option>
+                                <option value="Суббота">Суббота</option>
+                                <option value="Воскресенье">Воскресенье</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="plan-meal">Прием пищи:</label>
+                            <select id="plan-meal" required>
+                                <option value="Завтрак">Завтрак</option>
+                                <option value="Обед">Обед</option>
+                                <option value="Ужин">Ужин</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="plan-recipe">Выберите блюдо из книги:</label>
+                            <select id="plan-recipe" required>
+                                <!-- Наполняется динамически из доступных рецептов -->
+                            </select>
+                        </div>
+                        <button type="submit" class="submit-btn">Добавить в расписание</button>
+                    </form>
+                </div>
+
+                <!-- Таблица расписания -->
+                <div class="table-container">
+                    <table class="app-table">
+                        <thead>
+                            <tr>
+                                <th>День</th>
+                                <th>Прием пищи</th>
+                                <th>Блюдо</th>
+                                <th>Действие</th>
+                            </tr>
+                        </thead>
+                        <tbody id="planner-tbody">
+                            <!-- Записи меню -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ЭКРАН 3: СПИСОК ПРОДУКТОВ -->
+        <section id="shopping-screen" class="screen">
+            <h2>Список продуктов для покупки</h2>
+            <p class="subtitle">Ингредиенты для запланированных на неделю блюд.</p>
+            
+            <div class="shopping-container">
+                <div class="shopping-card">
+                    <ul class="shopping-list" id="shopping-list-container">
+                        <!-- Список ингредиентов с чекбоксами -->
+                    </ul>
+                    <button id="clear-shopping-btn" class="clear-btn">Очистить список</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
